@@ -18,7 +18,7 @@ st.sidebar.header("Inputs")
 def user_input(): 
     Month=st.sidebar.slider('Month', 1, 12, 6)
     Year=st.sidebar.slider('Year', 2023, 2030, 2031)
-    a='f{Year}/{Month}' 
+    a=f'{Year}/{Month}'
     A = datetime.datetime.strptime(a, '%Y/%m')
     
     return  A
