@@ -18,7 +18,7 @@ st.sidebar.header("Inputs")
 def user_input(): 
     Month=st.sidebar.slider('Month', 1, 12, 6)
     Year=st.sidebar.slider('Year', 2023, 2030, 2031)
-    a=f'{Year}/{Month}'
+    a=str(f'{Year},{Month}')
     A = datetime.datetime.strptime(a, '%Y/%m')
     
     return  A
@@ -102,13 +102,14 @@ forcasted_values=df_forcasting['forcasted values'].values
 i=0
 for i in range(len(date_target)):
         B=datetime.datetime.strptime(str(date_target[i]), '%Y/%m')
+        #b=str(date_target[i])
         if B==daf:
-         print(B)
-         print(daf)
+         #print(b)
+         #print(daf)
                
-        print(np.exp(forcasted_values[i])) 
-        result=np.exp(forcasted_values[i] )   # convert result by exp. 
-        print((forcasted_values[i]))
+           print(np.exp(forcasted_values[i])) 
+           result=(forcasted_values[i])   # convert result by exp. 
+           print((forcasted_values[i]))
         
 st.subheader('the predicted consommation:')
 st.write(result)
