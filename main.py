@@ -84,11 +84,37 @@ df_forcasting['forcast_date']=df_date['modified']
 df_forcasting=df_forcasting.reindex(columns = ['forcast_date', 'forcasted values'])
 
 ####################################################################################
+# Correction coefficien 
+Coeff=df2/df1
+# Model Train (correction coeffiecien forcasting)
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+# Dataset split 
+size = int(len(Coeff['Valeur (TWh)']) * 0.75)
+train_, test_ = Coeff['Valeur (TWh)'][0:size], Coeff['Valeur (TWh)'][size:len(Coeff['Valeur (TWh)'])]
+test_ = test_.reset_index()['Valeur (TWh)']
+history_ = [x for x in train_]
+predictions_ = list()
+
+for t in range(len(test_)):
+    model_ = SARIMAX(history_, order=(1, 1, 1) , seasonal_order=(1, 1, 1, 12))
+    model_fit_ = model_.fit(disp=False)
+    output_ = model_fit_.forecast()
+    yhat_ = output_[0]
+    predictions_.append(yhat_)
+    obs = test_[t]
+    history1.append(yhat_)
+# Focrcast function (Correction coefficien forcasting)
+pred_correc=model_fit_.predict(start=108, end=215, dynamic=True)
+# add pred_correc to dataframe forcasting
+df_forcasting = df_forcasting.assign(Correc_coefficient=pred_correc)
+
 
 
 # Result  loop
+
 date_target=df_forcasting['forcast_date'].values
 forcasted_values=df_forcasting['forcasted values'].values
+Ccoff=df_forcasting['Correc_coefficient'].values 
 i=0
 for i in range(len(date_target)):
        B=datetime.strptime(str(date_target[i]), '%Y/%m').date()
@@ -97,10 +123,16 @@ for i in range(len(date_target)):
          #print(b)
          #print(daf)
                
-           print(np.exp(forcasted_values[i])) 
-           result=(np.exp(forcasted_values[i]))   # convert result by exp. 
-           print((forcasted_values[i]))
-        
-st.subheader('The predicted consommation')
-st.write(f'{result} TWh')
-st.write(f'{result*1000} GWh')
+            print(f'corrected_consumption={np.exp(forcasted_values[i])}')   # convert result by exp. 
+            result1=np.exp(forcasted_values[i])
+            corrected= round(result1, 2)
+            print((Ccoff[i])) # correction coefficien
+            print(f'Brut consumption={np.exp(forcasted_values)[i]/Ccoff[i]}')
+            result2=np.exp(forcasted_values)[i]/Ccoff[i]
+            brut=round(result2, 2)
+st.subheader('The prediction of corrected consumption')
+st.write(f'{corrected} TWh')
+st.write(f'{corrected*1000} GWh')
+st.subheader('The prediction of brut consumption')
+st.write(f'{brut} TWh')
+st.write(f'{brut*1000} GWh')
