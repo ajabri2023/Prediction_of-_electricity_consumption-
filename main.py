@@ -7,7 +7,7 @@ import statsmodels
 from statsmodels.tsa.arima.model import sarimax
 
 
-st.write(''' #Prediction of electrical consumption in France''')
+st.write('''___________----Prediction of electrical consumption in France_________________''')
 
 #Month=input('Month')
 #Year=input('Year')  
@@ -16,12 +16,14 @@ st.write(''' #Prediction of electrical consumption in France''')
 # Test loop A
 st.sidebar.header("Inputs")
 def user_input(): 
-    Month=st.sidebar.slider('Month', 1, 12, 6)
-    Year=st.sidebar.slider('Year', 2023, 2030, 2031)
-    a=str(f'{Year},{Month}')
-    A = datetime.datetime.strptime(a, '%Y/%m')
+    a = st.date_input("forcasted date", datetime.date(2023, 7))
+
+    #Month=st.sidebar.slider('Month', 1, 12, 6)
+    #Year=st.sidebar.slider('Year', 2023, 2030, 2031)
+    #a=str(f'{Year},{Month}')
+    #A = datetime.datetime.strptime(a, '%Y/%m')
     
-    return  A
+    return  a
    
 daf=user_input()  
 st.subheader('the forcasted value of consumption')
@@ -91,9 +93,6 @@ df_forcasting=df_forcasting.reindex(columns = ['forcast_date', 'forcasted values
 
 #A = datetime.datetime.strptime(a, '%Y/%m')
 ####################################################################################
-
-
-
 
 
 
