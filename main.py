@@ -1,47 +1,45 @@
 import streamlit as st 
 import numpy as np
 import pandas as pd 
-from datetime import date
-from datetime import datetime
+
+from datetime import datetime, date
+
 import statsmodels
 from statsmodels.tsa.arima.model import sarimax
 
 
-st.write('''___________----Prediction of electrical consumption in France_________________''')
-
-#Month=input('Month')
-#Year=input('Year')  
+st.header('''Prediction of monthly electricity consumption in France''')
 
 
-# Test loop A
+# Test loop A (Inputs)
 st.sidebar.header("Inputs")
 def user_input(): 
-    a = st.date_input("forcasted date", datetime.date(2023, 7))
-
-    #Month=st.sidebar.slider('Month', 1, 12, 6)
-    #Year=st.sidebar.slider('Year', 2023, 2030, 2031)
-    #a=str(f'{Year},{Month}')
-    #A = datetime.datetime.strptime(a, '%Y/%m')
+    Month=st.sidebar.slider('Month', 1, 12, 6)
+    Year=st.sidebar.slider('Year', 2023, 2030, 2031)
+    a=str(f'{Year}/{Month}')
+    A = datetime.strptime(a, '%Y/%m').date()  
     
-    return  a
-   
+    return  A
+  
 daf=user_input()  
-st.subheader('the forcasted value of consumption')
+st.write('The date concerned by the prediction ')
 st.write(daf)
 
-
+# Data preparation and model training
 ##############################################################################################
+
 df1 = pd.read_csv("Brut consumption.csv", sep=';', header=0, parse_dates=[0], index_col=0, decimal=',') 
 # corrected consumption 
 df2= pd.read_csv("Corre_consumption.csv", sep=';', header=0, parse_dates=[0], index_col=0, decimal=',') 
 #Removing columns 'Filière' 
 df1=df1.drop(columns=['Filière'])
 df2=df2.drop(columns=['Filière'])
-
+# df_test
 df_test=df2[108:118]
 df2.drop(df2.index[108:118], inplace=True)
 df=np.log(df2)
-################################""
+
+#Model train
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 # Dataset split 
 size = int(len(df['Valeur (TWh)']) * 0.75)
@@ -49,12 +47,10 @@ train1, test1 = df['Valeur (TWh)'][0:size], df['Valeur (TWh)'][size:len(df['Vale
 test1 = test1.reset_index()['Valeur (TWh)']
 history1 = [x for x in train1]
 predictions1 = list()
-#####################################################""
+# fitting 
 for t in range(len(test1)):
-    model1 = SARIMAX(history1
-                    , order=(1, 1, 1) # order = (p,d,q) AR(p)I(d)MA(q)
-                    , seasonal_order=(1, 1, 1, 12) # order = (P,D,Q,m) Seasonal AR(P)I(D)MA(Q) m Seasonal Period
-                    )
+    model1 = SARIMAX(history1 , order=(1, 1, 1), seasonal_order=(1, 1, 1, 12))
+
     model_fit = model1.fit(disp=False)
     output = model_fit.forecast()
     yhat = output[0]
@@ -64,9 +60,11 @@ for t in range(len(test1)):
 
 
 # Focrcast function (Corrected consuption forcasting)
+
 Fotcasted=model_fit.predict(start=108, end=215, dynamic=True)
 
 # From array to dataframe of forecasting 
+
 df_forcasting=pd.DataFrame(Fotcasted, columns =['forcasted values'])
 
 # Time function preparation 1
@@ -85,30 +83,24 @@ df_forcasting=pd.DataFrame(Fotcasted, columns =['forcasted values'])
 df_forcasting['forcast_date']=df_date['modified']
 df_forcasting=df_forcasting.reindex(columns = ['forcast_date', 'forcasted values'])
 
-# User interface (Year/Month)
-#a='f{Year}/{Month}'
-#print(a)
-
-#a=f'{Year}/{Month}'
-
-#A = datetime.datetime.strptime(a, '%Y/%m')
 ####################################################################################
 
 
-
+# Result  loop
 date_target=df_forcasting['forcast_date'].values
 forcasted_values=df_forcasting['forcasted values'].values
 i=0
 for i in range(len(date_target)):
-        B=datetime.datetime.strptime(str(date_target[i]), '%Y/%m')
+       B=datetime.strptime(str(date_target[i]), '%Y/%m').date()
         #b=str(date_target[i])
-        if B==daf:
+       if B==daf:
          #print(b)
          #print(daf)
                
            print(np.exp(forcasted_values[i])) 
-           result=(forcasted_values[i])   # convert result by exp. 
+           result=(np.exp(forcasted_values[i]))   # convert result by exp. 
            print((forcasted_values[i]))
         
-st.subheader('the predicted consommation:')
-st.write(result)
+st.subheader('The predicted consommation')
+st.write(f'{result} TWh')
+st.write(f'{result*1000} GWh')
