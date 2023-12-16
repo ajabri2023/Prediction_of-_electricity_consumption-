@@ -6,9 +6,12 @@ from datetime import datetime, date
 
 import statsmodels
 from statsmodels.tsa.arima.model import sarimax
+from PIL import Image
+# Title and images
+st.header("Prediction of monthly electricity consumption in France")
+st.image("IA_Electronics.png", use_column_width="auto")
+st.sidebar.image("logo_ADS.png", use_column_width="auto")
 
-
-st.header('''Prediction of monthly electricity consumption in France''')
 
 
 # Test loop A (Inputs)
@@ -23,7 +26,7 @@ def user_input():
   
 daf=user_input()  
 st.write('The date concerned by the prediction ')
-st.write(daf)
+st.write(str(daf))
 
 # Data preparation and model training
 ##############################################################################################
@@ -130,9 +133,13 @@ for i in range(len(date_target)):
             print(f'Brut consumption={np.exp(forcasted_values)[i]/Ccoff[i]}')
             result2=np.exp(forcasted_values)[i]/Ccoff[i]
             brut=round(result2, 2)
-st.subheader('The prediction of corrected consumption')
+
+st.write('Outputs')
+st.subheader('Corrected consumption:')
 st.write(f'{corrected} TWh')
 st.write(f'{corrected*1000} GWh')
-st.subheader('The prediction of brut consumption')
+st.subheader('Brut consumption:')
 st.write(f'{brut} TWh')
 st.write(f'{brut*1000} GWh')
+
+st.sidebar.image('H_voltage.png', use_column_width="auto")
