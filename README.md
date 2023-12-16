@@ -7,10 +7,14 @@ For these reasons, future forecasts of energy consumption play a vital role in d
 Our study will concern the use of artificial intelligence technology in the creation of a prediction model for future electricity consumption in France based on electricity consumption in past years.
 The notebooks in this file describe the different stages of finding a solution. At the beginning we will do an analysis on existing datasets using the different Python libraries. Then, we will study the evolution of electricity consumption over time by visualizing it in the form of a curve and making it modelable (processing). Depending on the analysis and decomposition results, we will choose the appropriate prediction algorithm.
 
-Geographical area concerned: France
-Prediction interval: from January 2023 to December 2031
-Predicted variables:
--Corrected monthly electricity consumption
--Raw monthly electricity consumption
+Geographical area concerned: France;
 
-Prediction model used: SARIMA
+Prediction interval: from January 2023 to December 2031;
+
+Predicted variables:
+
+    -Corrected monthly electricity consumption;
+
+    -Raw monthly electricity consumption;
+
+Prediction model used: SARIMA.
