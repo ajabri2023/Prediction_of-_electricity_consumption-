@@ -1,13 +1,14 @@
 ---
-title: Electricity Prediction Fr
-emoji: 🦀
-colorFrom: indigo
-colorTo: yellow
+title: Electrical Consump
+emoji: 🔥
+colorFrom: red
+colorTo: gray
 sdk: streamlit
 sdk_version: 1.29.0
 app_file: app.py
 pinned: false
 ---
+
 
 ##################Prediction of monthly electricity consumption in France###################################
 
