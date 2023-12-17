@@ -1,13 +1,4 @@
----
-title: Cons Electricity
-emoji: 🔥
-colorFrom: blue
-colorTo: pink
-sdk: streamlit
-sdk_version: 1.29.0
-app_file: app.py
-pinned: false
----
+
 
 
 ##################Prediction of monthly electricity consumption in France###################################
