@@ -1,17 +1,14 @@
 import streamlit as st 
 import numpy as np
 import pandas as pd 
-
 from datetime import datetime, date
-
-import statsmodels
+import statsmodels.api as  sm
 from statsmodels.tsa.arima.model import sarimax
 from PIL import Image
 # Title and images
 st.header("Prediction of monthly electricity consumption in France")
 st.image("IA_Electronics.png", use_column_width="auto")
 st.sidebar.image("logo_ADS.png", use_column_width="auto")
-
 
 
 # Test loop A (Inputs)
@@ -147,3 +144,4 @@ st.write(f'{brut} TWh')
 st.write(f'{brut*1000} GWh')
 
 st.sidebar.image('H_voltage.png', use_column_width="auto")
+st.write('Hello Hugging face')
