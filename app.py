@@ -1,9 +1,7 @@
 import streamlit as st 
 import numpy as np
 import pandas as pd 
-
 from datetime import datetime, date
-
 import statsmodels.api as  sm
 from statsmodels.tsa.arima.model import sarimax
 from PIL import Image
@@ -145,5 +143,5 @@ st.write(f'{corrected*1000} GWh')
 st.write('Brut consumption in (TWh) and (GWh):')
 st.write(f'{brut} TWh')
 st.write(f'{brut*1000} GWh')
-
 st.sidebar.image('H_voltage.png', use_column_width="auto")
+st.write('Hello Hugging face')
