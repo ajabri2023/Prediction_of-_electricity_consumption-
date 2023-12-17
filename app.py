@@ -2,13 +2,10 @@ import streamlit as st
 import numpy as np
 import pandas as pd 
 from datetime import datetime, date
-<<<<<<< HEAD
-=======
-
->>>>>>> 691226b5d4decc05b44db289f1ea84d50e6bad61
 import statsmodels.api as  sm
 from statsmodels.tsa.arima.model import sarimax
 from PIL import Image
+
 # Title and images
 st.header("Prediction of monthly electricity consumption in France")
 st.image("IA_Electronics.png", use_column_width="auto")
