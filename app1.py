@@ -2,10 +2,13 @@ import streamlit as st
 import numpy as np
 import pandas as pd 
 from datetime import datetime, date
+<<<<<<< HEAD:app1.py
 <<<<<<< HEAD
 =======
 
 >>>>>>> 691226b5d4decc05b44db289f1ea84d50e6bad61
+=======
+>>>>>>> 7a0985b096d9d6b62456ae229b824f1503ccd6d8:app.py
 import statsmodels.api as  sm
 from statsmodels.tsa.arima.model import sarimax
 from PIL import Image
@@ -146,6 +149,5 @@ st.write(f'{corrected*1000} GWh')
 st.write('Brut consumption in (TWh) and (GWh):')
 st.write(f'{brut} TWh')
 st.write(f'{brut*1000} GWh')
-
 st.sidebar.image('H_voltage.png', use_column_width="auto")
 st.write('Hello Hugging face')
