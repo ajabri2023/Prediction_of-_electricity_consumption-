@@ -4,7 +4,7 @@ import pandas as pd
 
 from datetime import datetime, date
 
-import statsmodels
+import statsmodels.api as  sm
 from statsmodels.tsa.arima.model import sarimax
 from PIL import Image
 # Title and images
