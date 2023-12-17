@@ -8,6 +8,7 @@ sdk_version: 1.29.0
 app_file: app.py
 pinned: false
 ---
+
 ##################Prediction of monthly electricity consumption in France###################################
 
 In our time, electricity constitutes the lifeblood of the majority of economic sectors and the daily life of households. It is the vector of evolution of contemporary civilization. As a result, the search for new sources of energy and the optimization of its consumption are the major challenges for public authorities and the various economic actors linked directly or indirectly with the energy market, especially with the risks induced by fluctuation. of the international energy market and ecological constraints (CO2 emissions, depletion of natural resources, etc.).
