@@ -1,15 +1,13 @@
 ---
-title: Cons Electricity
-emoji: 🔥
-colorFrom: blue
+title: Electricity Forecasting2
+emoji: 👁
+colorFrom: green
 colorTo: pink
 sdk: streamlit
 sdk_version: 1.29.0
 app_file: app.py
 pinned: false
 ---
-
-
 
 
 
