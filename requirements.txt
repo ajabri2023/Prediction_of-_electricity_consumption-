@@ -120,7 +120,6 @@ pycparser==2.21
 pydeck==0.8.1b0
 Pygments==2.16.1
 pyparsing==3.1.1
-pypiwin32==223
 pyproject-toml==0.0.10
 pyproject_hooks==1.0.0
 python-dateutil==2.8.2
