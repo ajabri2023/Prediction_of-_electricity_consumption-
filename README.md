@@ -33,3 +33,12 @@ Predicted variables:
     -Raw monthly electricity consumption;
 
 Prediction model used: SARIMA.
+
+Sources:
+
+https://analysesetdonnees.rte-france.com/bilan-electrique-synthese
+
+https://www.edf.fr/groupe-edf/espaces-dedies/jeunes-enseignants/pour-les-jeunes/lenergie-de-a-a-z/lelectricite-au-quotidien/la-consommation-delectricite-en-chiffres
+
+
+
