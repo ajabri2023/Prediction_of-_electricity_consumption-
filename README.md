@@ -15,7 +15,7 @@ pinned: false
 
 
 
-##################Prediction of monthly electricity consumption in France###################################
+                   ###Prediction of monthly electricity consumption in France###
 
 In our time, electricity constitutes the lifeblood of the majority of economic sectors and the daily life of households. It is the vector of evolution of contemporary civilization. As a result, the search for new sources of energy and the optimization of its consumption are the major challenges for public authorities and the various economic actors linked directly or indirectly with the energy market, especially with the risks induced by fluctuation. of the international energy market and ecological constraints (CO2 emissions, depletion of natural resources, etc.).
 For these reasons, future forecasts of energy consumption play a vital role in decision-making mechanisms relating to the energy sector. Alongside the scientific and empirical methods used for future forecasts, we cannot neglect the role of artificial intelligence in this field, especially with the remarkable evolution of digital calculation systems (processors, etc.) at the software and hardware levels.
