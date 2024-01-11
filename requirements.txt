@@ -2,6 +2,6 @@ numpy==1.26.0
 streamlit==1.29.0 
 DateTime==5.3 
 pandas==2.1.1
-pandocfilters==1.5.0
-scipy==1.11.4
+
+
 
